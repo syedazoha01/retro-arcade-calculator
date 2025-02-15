@@ -1,0 +1,1 @@
+A **Retro Arcade Calculator** with a neon-inspired design, arcade-style buttons, and a nostalgic beep sound effect. It supports basic arithmetic operations and features smooth animations for an interactive experience. 🚀
