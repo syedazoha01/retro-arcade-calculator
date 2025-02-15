@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Arcade Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            background: linear-gradient(45deg, #1a1a1a, #444);
+            color: #ffcc00;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #222;
+            padding: 25px;
+            border: 5px solid #ffcc00;
+            box-shadow: 0 0 25px #ffcc00;
+            border-radius: 20px;
+            width: 320px;
+        }
+        .screen {
+            width: 100%;
+            height: 70px;
+            background: black;
+            color: #ffcc00;
+            font-size: 30px;
+            text-align: right;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 3px solid #ffcc00;
+            border-radius: 12px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .buttons button {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            width: 75px;
+            height: 75px;
+            border: none;
+            background: #555;
+            color: #967a0b;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 4px #ac7d48;
+            transition: all 0.2s;
+        }
+        .buttons button:hover {
+            background: #ffcc00;
+            color: black;
+            box-shadow: 0 4px #472503;
+        }
+        .buttons button:active {
+            box-shadow: 0 2px #2b1805;
+            transform: translateY(2px);
+        }
+        .buttons button:nth-child(1) {
+            background: #ff4444;
+            color: white;
+        }
+        .buttons button:nth-child(1):hover {
+            background: #ff6666;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Retro Arcade Calculator</h1>
+        <div class="screen" id="screen">0</div>
+        <div class="buttons">
+            <button onclick="clearScreen()">C</button>
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('+')">+</button>
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('-')">-</button>
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('*')">*</button>
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendValue('/')">/</button>
+        </div>
+    </div>
+    <audio id="beep" src="https://www.myinstants.com/media/sounds/coin_2.mp3"></audio>
+    <script>
+        function appendValue(val) {
+            let screen = document.getElementById("screen");
+            if (screen.innerText === "0") {
+                screen.innerText = val;
+            } else {
+                screen.innerText += val;
+            }
+            document.getElementById("beep").play();
+        }
+        function clearScreen() {
+            document.getElementById("screen").innerText = "0";
+        }
+        function calculate() {
+            let screen = document.getElementById("screen");
+            try {
+                screen.innerText = eval(screen.innerText);
+            } catch {
+                screen.innerText = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
